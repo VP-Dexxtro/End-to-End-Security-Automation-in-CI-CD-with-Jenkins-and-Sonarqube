@@ -3,10 +3,9 @@
 				<img width="1280" height="720" src="https://github.com/VP-Dexxtro/End-to-End-Security-Automation-in-CI-CD-with-Jenkins-and-Sonarqube/blob/main/Infrastructure.png" class="attachment-full size-full" alt="" itemprop="image" decoding="async" fetchpriority="high" srcset="https://mrcloudbook.com/wp-content/uploads/2024/01/PYTHON.png 1280w, https://mrcloudbook.com/wp-content/uploads/2024/01/PYTHON-300x169.png 300w, https://mrcloudbook.com/wp-content/uploads/2024/01/PYTHON-1024x576.png 1024w, https://mrcloudbook.com/wp-content/uploads/2024/01/PYTHON-768x432.png 768w" sizes="(max-width: 1280px) 100vw, 1280px">
 			</div>			<header class="entry-header">
 				<h1 class="entry-title" itemprop="headline">CI-CD DevSecOps project with Jenkins | Python webapp</h1>		<div class="entry-meta">
-			<span class="posted-on"><time class="entry-date published" datetime="2024-01-08T15:33:38+05:30" itemprop="datePublished">8 January 2024</time></span> <span class="byline">by <span class="author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope=""><a class="url fn n" href="https://mrcloudbook.com/author/mrcloudbook-com/" title="View all posts by mrcloudbook.com" rel="author" itemprop="url"><span class="author-name" itemprop="name">mrcloudbook.com</span></a></span></span> 		</div>
 					</header>
 			
-		<p>Hello friends, we will be deploying a python based application. This is an everyday use case scenario used by several organizations. We will be using Jenkins as a CICD tool and deploying our application on a Docker Container. Hope this detailed blog is useful.</p>
+Hello friends, we will be deploying a python based application. This is an everyday use case scenario used by several organizations. We will be using Jenkins as a CICD tool and deploying our application on a Docker Container. Hope this detailed blog is useful.
 <p><code>Github:</code> <a href="https://github.com/Aj7Ay/Python-System-Monitoring.git" target="_blank" rel="noopener"><code>https://github.com/Aj7Ay/Python-System-Monitoring.git</code></a></p>
 <h1 id="heading-steps" class="permalink-heading"><strong>Steps:-</strong></h1>
 <p><code>Step 1 — Create an Ubuntu T2 Large Instance</code></p>
