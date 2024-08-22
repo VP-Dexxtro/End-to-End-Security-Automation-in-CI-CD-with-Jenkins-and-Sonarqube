@@ -436,5 +436,3 @@ make -v
 <h2 id="heading-step-10-terminate-the-aws-ec2-instance" class="permalink-heading"></h2>
 <h2 id="heading-step-10-terminate-the-aws-ec2-instance" class="permalink-heading"><strong>Step 10</strong> — <strong>Terminate the AWS EC2 Instance</strong></h2>
 <p>Lastly, do not forget to terminate the AWS EC2 Instance.</p>
-
-			</div>
