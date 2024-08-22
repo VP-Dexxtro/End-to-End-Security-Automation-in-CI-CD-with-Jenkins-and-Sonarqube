@@ -1,0 +1,95 @@
+pipeline{
+    agent any
+    tools{
+        jdk 'jdk17'
+    }
+    environment {
+        SCANNER_HOME=tool 'sonar-scanner'
+    }
+    stages {
+        stage('clean workspace'){
+            steps{
+                cleanWs()
+            }
+        }
+        stage('Checkout From Git'){
+            steps{
+                git branch: 'main', url: 'https://github.com/VP-Dexxtro/Vulapp-Demo.git'
+            }
+        }
+        stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Python-Webapp \
+                    -Dsonar.projectKey=Python-Webapp '''
+                }
+            }
+        }
+        stage("quality gate"){
+           steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token'
+                    
+                }
+            }
+        }
+        stage("TRIVY File scan"){
+            steps{
+                sh "trivy fs . > trivy-fs_report.txt"
+            }
+        }
+        stage("OWASP Dependency Check"){
+            steps{
+                dependencyCheck additionalArguments: '--scan ./ --format HTML ', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.html'
+            }
+        }
+        stage("mail1"){
+           steps {
+                script {
+                   emailext body: 'Till the Depemdency-Check Stage are Completed', subject: 'Completion Of all half Stages', to: 'patilvinis@gmail.com'
+                }
+            }
+        }
+        stage("Docker Build & tag"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                       sh "docker build -t vulapp ."
+                       sh "docker tag vulapp vineet2001/vulapp-demo"
+                    }
+                }
+            }
+        }
+        stage("TRIVY"){
+            steps{
+                sh "trivy image vineet2001/vulapp-demo:latest > trivy.txt"
+            }
+        }
+        stage("mail2"){
+           steps {
+                script {
+                   emailext attachmentsPattern: 'trivy.txt' , body: '', subject: 'Trivy-report', to: 'patilvinis@gmail.com'
+                   emailext attachmentsPattern: 'trivy-fs_report.txt', body: '', subject: 'Trivy-FileScan-report', to: 'patilvinis@gmail.com'
+                   emailext attachmentsPattern: '**/dependency-check-report.html' ,attachLog: true, body: '', subject: 'dependency-check-report', to: 'patilvinis@gmail.com'
+                }
+            }
+        }
+        stage("Docker Push"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                       sh "docker push vineet2001/vulapp-demo"
+                    }
+                }
+            }
+        }
+        stage("Deploy to container"){
+            steps{
+                sh "ssh admin@172.16.0.9 'docker service rm websrv;docker pull vineet2001/vulapp-demo'"
+                sh "ssh admin@172.16.0.9 'docker service create --name websrv -p 80:65412 vineet2001/vulapp-demo'"
+                sh "ssh admin@172.16.0.9 'docker service scale websrv=3'"
+            }
+        }
+    }
+}
