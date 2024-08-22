@@ -6,8 +6,7 @@
 			<span class="posted-on"><time class="entry-date published" datetime="2024-01-08T15:33:38+05:30" itemprop="datePublished">8 January 2024</time></span> <span class="byline">by <span class="author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope=""><a class="url fn n" href="https://mrcloudbook.com/author/mrcloudbook-com/" title="View all posts by mrcloudbook.com" rel="author" itemprop="url"><span class="author-name" itemprop="name">mrcloudbook.com</span></a></span></span> 		</div>
 					</header>
 			
-		<div class="entry-content" itemprop="text">
-			<p>Hello friends, we will be deploying a python based application. This is an everyday use case scenario used by several organizations. We will be using Jenkins as a CICD tool and deploying our application on a Docker Container. Hope this detailed blog is useful.</p>
+		<p>Hello friends, we will be deploying a python based application. This is an everyday use case scenario used by several organizations. We will be using Jenkins as a CICD tool and deploying our application on a Docker Container. Hope this detailed blog is useful.</p>
 <p><code>Github:</code> <a href="https://github.com/Aj7Ay/Python-System-Monitoring.git" target="_blank" rel="noopener"><code>https://github.com/Aj7Ay/Python-System-Monitoring.git</code></a></p>
 <h1 id="heading-steps" class="permalink-heading"><strong>Steps:-</strong></h1>
 <p><code>Step 1 — Create an Ubuntu T2 Large Instance</code></p>
